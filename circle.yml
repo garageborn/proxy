@@ -1,0 +1,17 @@
+machine:
+  services:
+    - docker
+
+dependencies:
+  cache_directories:
+    - ~/docker
+
+deployment:
+  hub:
+    branch: master
+    commands:
+      - bin/rake deploy
+
+test:
+  override:
+    - echo 'Skip'

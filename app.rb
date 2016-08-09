@@ -10,9 +10,18 @@ class App < Sinatra::Base
     also_reload File.expand_path('../concepts/**/*.rb', __FILE__)
   end
 
-  get '/' do
-    Proxy::Request.run(params) do |op|
-      p op
+  configure :production do
+    use Raven::Rack
+  end
+
+  %i(get post put).each do |method|
+    send(method, '/') do
+      options = params.merge(method: method)
+      carakgi
+      Proxy::Request.run(options) do |op|
+        headers op.model.request.headers
+        body op.model.request.body
+      end
     end
   end
 end

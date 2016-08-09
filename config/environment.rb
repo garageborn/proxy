@@ -1,18 +1,19 @@
 require 'sinatra'
-require 'memoist'
+require 'sinatra/reloader'
+
+require 'active_support/all'
+require 'addressable'
 require 'httparty'
+require 'memoist'
+require 'retries'
+require 'thread/pool'
+require 'logger'
 
 require 'trailblazer'
 require 'trailblazer/operation'
 require 'trailblazer/operation/model'
-require 'dry-validation'
-require 'reform'
-require 'reform/form/dry'
 
-Reform::Contract.class_eval do
-  feature Reform::Form::Dry
-end
-
-require 'sinatra/reloader'
-require File.expand_path('../../concepts/proxy/contract', __FILE__)
-require File.expand_path('../../concepts/proxy/operation', __FILE__)
+Dir.glob(File.expand_path('../initializers/**/*.rb', __FILE__)).each { |f| require f }
+Dir.glob(File.expand_path('../../app/**/*.rb', __FILE__)).each { |f| require f }
+Dir.glob(File.expand_path('../../lib/*.rb', __FILE__)).each { |f| require f }
+Dir.glob(File.expand_path('../../lib/**/*.rb', __FILE__)).each { |f| require f }

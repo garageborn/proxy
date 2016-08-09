@@ -20,20 +20,21 @@ class Proxy
       DEFAULT_RATE_LIMIT_WINDOW = 1.minute.to_i
       MAX_RATE_LIMIT_WINDOW = 5.minutes.to_i
       MAX_RETRIES = 3
-      RESCUE_FROM = Proxy::Request::RESCUE_FROM
+      RESCUE_FROM = ::Request::RESCUE_FROM
 
       attr_accessor :last_request
 
       def all
         return if proxies.size >= rate_limit
         (rate_limit - proxies.size).times { request_new_proxy }
+        pool.shutdown
         proxies
       end
 
       private
 
       def request_new_proxy
-        new_proxy_proc.call
+        pool.process { new_proxy_proc.call }
       end
 
       def fetch_proxy!
@@ -51,6 +52,7 @@ class Proxy
         proc do
           current_request = fetch_proxy!
           next if current_request.blank?
+          p '============', current_request.parsed_response
           add_proxy(
             ip: current_request.parsed_response['ip'],
             port: current_request.parsed_response['port']
@@ -61,7 +63,8 @@ class Proxy
 
       def add_proxy(new_proxy)
         return if new_proxy[:ip].blank? || new_proxy[:port].blank?
-        proxies.push(new_proxy) unless proxies.include?(new_proxy)
+        host = "#{ new_proxy[:ip] }:#{ new_proxy[:port] }"
+        proxies.push(host) unless proxies.include?(host)
       end
 
       def at_rate_limit?
@@ -83,7 +86,11 @@ class Proxy
         []
       end
 
-      memoize :proxies, :new_proxy_proc
+      def pool
+        Thread.pool(rate_limit)
+      end
+
+      memoize :proxies, :pool, :new_proxy_proc
     end
   end
 end

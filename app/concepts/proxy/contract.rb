@@ -1,14 +1,12 @@
-class Proxy
+class Proxy < Ohm::Model
   class Contract < Reform::Form
-    property :ip
-    property :port
+    property :host
     property :active
     property :requested_at
 
     validation do
+      required(:host).filled
       required(:active).filled
-      required(:ip).filled
-      required(:port).filled
     end
   end
 end
