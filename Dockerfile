@@ -1,5 +1,9 @@
 FROM ruby:2.3.1-slim
 
+# install dependencies
+RUN apt-get update -qq && apt-get install --fix-missing -y build-essential
+
+# build proxy
 ENV PROXY /proxy
 RUN mkdir $PROXY
 COPY . $PROXY
