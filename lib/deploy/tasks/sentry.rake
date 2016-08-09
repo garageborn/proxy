@@ -4,10 +4,8 @@ namespace :deploy do
   namespace :sentry do
     task :notify_deployment do
       current_revision = `cd ~/docker/repo && git log --pretty=format:'%h' -n 1`.chomp
-      sentry_url = 'https://app.getsentry.com/api/hooks/release/builtin/91298'\
-                   '/e4efda3b50b201910ee45c91fa096482e2ed4feaac7b281e80044eb5243c1c1c/'
       HTTParty.post(
-        sentry_url
+        'https://app.getsentry.com/api/hooks/release/builtin/91298/e4efda3b50b201910ee45c91fa096482e2ed4feaac7b281e80044eb5243c1c1c/',
         body: {
           version: current_revision,
           ref: current_revision,
