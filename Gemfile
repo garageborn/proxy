@@ -1,0 +1,12 @@
+source 'https://rubygems.org'
+
+gem 'dry-validation', '0.9.3'
+gem 'httparty', '0.14.0'
+gem 'memoist', '0.14.0'
+gem 'puma', '3.6.0'
+gem 'rake', '11.2.2'
+gem 'reform', '2.2.1'
+gem 'retries', '0.0.5'
+gem 'sinatra', '1.4.7'
+gem 'sinatra-contrib', '1.4.7'
+gem 'trailblazer', '1.1.1'
