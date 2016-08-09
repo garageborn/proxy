@@ -1,8 +1,6 @@
-require 'httparty'
-
 namespace :deploy do
   namespace :sentry do
-    task :notify_deployment do
+    task notify_deployment: :environment do
       current_revision = `cd ~/docker/repo && git log --pretty=format:'%h' -n 1`.chomp
       HTTParty.post(
         'https://app.getsentry.com/api/hooks/release/builtin/91298/e4efda3b50b201910ee45c91fa096482e2ed4feaac7b281e80044eb5243c1c1c/',
