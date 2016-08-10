@@ -8,6 +8,7 @@ class Request
     Errno::ECONNRESET,
     Net::HTTPRetriableError,
     Net::HTTPServerException,
+    SocketError,
     Timeout::Error
   ].freeze
   DEFAULT_TIMEOUT = 10
@@ -28,6 +29,12 @@ class Request
       set_options!(attempt)
       self.request = call
     end
+  rescue *RESCUE_FROM
+  end
+
+  def response
+    return [422, {}, nil] if request.blank?
+    [request.code, request.headers, request.body]
   end
 
   private
