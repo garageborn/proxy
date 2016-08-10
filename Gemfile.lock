@@ -8,6 +8,7 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.4.0)
     backports (3.6.8)
+    chronic (0.10.2)
     concurrent-ruby (1.0.2)
     declarative (0.0.8)
       uber (>= 0.0.15)
@@ -108,6 +109,8 @@ GEM
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uber (0.0.15)
+    whenever (0.9.7)
+      chronic (>= 0.6.3)
 
 PLATFORMS
   ruby
@@ -132,6 +135,7 @@ DEPENDENCIES
   sinatra-contrib (= 1.4.7)
   thread (= 0.2.2)
   trailblazer (= 1.1.1)
+  whenever (= 0.9.7)
 
 BUNDLED WITH
    1.12.5
