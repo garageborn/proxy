@@ -6,6 +6,7 @@ class Request
     EOFError,
     Errno::ECONNREFUSED,
     Errno::ECONNRESET,
+    Net::HTTPRetriableError,
     Net::HTTPServerException,
     Timeout::Error
   ].freeze
