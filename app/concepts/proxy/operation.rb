@@ -1,7 +1,7 @@
 class Proxy < Ohm::Model
   class Save < Trailblazer::Operation
     include Model
-    contract Contract
+    contract Proxy::Contract
     model Proxy, :create
 
     def process(params)
