@@ -53,12 +53,13 @@ class Request
   end
 
   def touch_current_proxy!(active)
+    return unless current_proxy.present?
     Proxy::Touch.run(id: current_proxy.id, active: active)
   end
 
   def retry_handler
     proc do
-      Proxy::Desactivate.run(id: current_proxy.id)
+      Proxy::Desactivate.run(id: current_proxy.id) if current_proxy.present?
       reload_current_proxy!
     end
   end

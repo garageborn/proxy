@@ -52,7 +52,6 @@ class Proxy
         proc do
           current_request = fetch_proxy!
           next if current_request.blank?
-          p '============', current_request.parsed_response
           add_proxy(
             ip: current_request.parsed_response['ip'],
             port: current_request.parsed_response['port']
