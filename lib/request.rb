@@ -2,7 +2,13 @@ class Request
   extend Memoist
   autoload :Logger, './lib/request/logger'
 
-  RESCUE_FROM = [Errno::ECONNRESET, Errno::ECONNREFUSED, EOFError, Timeout::Error].freeze
+  RESCUE_FROM = [
+    EOFError,
+    Errno::ECONNREFUSED,
+    Errno::ECONNRESET,
+    Net::HTTPServerException,
+    Timeout::Error
+  ].freeze
   DEFAULT_TIMEOUT = 10
   MAX_RETRIES = 7
 
