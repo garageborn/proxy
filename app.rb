@@ -17,7 +17,6 @@ class App < Sinatra::Base
   %i(get post put).each do |method|
     send(method, '/') do
       options = params.merge(method: method)
-      carakgi
       Proxy::Request.run(options) do |op|
         headers op.model.request.headers
         body op.model.request.body
