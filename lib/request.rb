@@ -8,6 +8,7 @@ class Request
     Errno::ECONNRESET,
     Net::HTTPRetriableError,
     Net::HTTPServerException,
+    OpenSSL::SSL::SSLError,
     SocketError,
     Timeout::Error
   ].freeze
