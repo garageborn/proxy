@@ -8,6 +8,7 @@ require 'memoist'
 require 'retries'
 require 'thread/pool'
 require 'logger'
+require 'logglier'
 
 require 'trailblazer'
 require 'trailblazer/operation'

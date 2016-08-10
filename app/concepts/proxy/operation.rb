@@ -1,7 +1,9 @@
+require File.expand_path('../operation', __FILE__)
+
 class Proxy < Ohm::Model
   class Save < Trailblazer::Operation
     include Model
-    contract Proxy::Contract
+    contract Contract
     model Proxy, :create
 
     def process(params)
