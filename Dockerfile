@@ -1,7 +1,10 @@
 FROM ruby:2.3.1-slim
 
 # install dependencies
-RUN apt-get update -qq && apt-get install --fix-missing -y build-essential git-core
+RUN apt-get update -qq && apt-get install --fix-missing -y \
+  build-essential \
+  git-core \
+  cron
 
 # build proxy
 ENV PROXY /proxy
