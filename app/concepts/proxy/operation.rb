@@ -1,4 +1,4 @@
-require File.expand_path('../operation', __FILE__)
+require File.expand_path('../contract', __FILE__)
 
 class Proxy < Ohm::Model
   class Save < Trailblazer::Operation
