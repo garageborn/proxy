@@ -26,8 +26,9 @@ class Proxy < Ohm::Model
     end
 
     def sample
-      sort_options = { by: :requested_at, order: 'DESC', limit: [0, 10] }
-      active.sort(sort_options).sample || all.sort(sort_options).sample
+      active_proxy = active.sort(by: :requested_at, order: 'DESC', limit: [0, 10]).sample
+      return active_proxy if active_proxy.present?
+      all.sort(by: :requested_at, order: 'DESC', limit: [0, 50]).sample
     end
   end
 end
