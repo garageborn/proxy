@@ -6,6 +6,8 @@ class Request
     EOFError,
     Errno::ECONNREFUSED,
     Errno::ECONNRESET,
+    Errno::EHOSTUNREACH,
+    Net::HTTPFatalError,
     Net::HTTPRetriableError,
     Net::HTTPServerException,
     OpenSSL::SSL::SSLError,
