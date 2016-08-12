@@ -35,9 +35,12 @@ class Proxy < Ohm::Model
   end
 
   class Touch < Trailblazer::Operation
+    MAX_ERRORS = 10
+
     def process(params = {})
       model.requested_at = Time.now
-      model.active = params[:active]
+      params[:active] ? model.errors = 0 : model.errors += 1
+      model.active = model.errors < MAX_ERRORS
       model.save
     end
 

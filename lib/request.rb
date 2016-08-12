@@ -15,7 +15,7 @@ class Request
     Timeout::Error
   ].freeze
   DEFAULT_TIMEOUT = 10
-  MAX_RETRIES = 7
+  MAX_RETRIES = 6
 
   attr_accessor :url, :options, :verb, :max_tries, :current_proxy, :request, :request_id
 
@@ -33,6 +33,7 @@ class Request
       self.request = call
     end
   rescue *RESCUE_FROM
+    touch_current_proxy!(false)
   end
 
   def response

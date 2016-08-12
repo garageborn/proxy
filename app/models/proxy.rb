@@ -5,6 +5,7 @@ class Proxy < Ohm::Model
   attribute :host
   attribute :active, Type::Boolean
   attribute :requested_at, Type::Time
+  attribute :errors, Type::Integer
 
   index :host
   index :active
@@ -28,7 +29,7 @@ class Proxy < Ohm::Model
     def sample
       active_proxy = active.sort(by: :requested_at, order: 'DESC', limit: [0, 10]).sample
       return active_proxy if active_proxy.present?
-      all.sort(by: :requested_at, order: 'DESC', limit: [0, 50]).sample
+      all.sort(by: :errors, order: 'DESC', limit: [0, 20]).sample
     end
   end
 end
