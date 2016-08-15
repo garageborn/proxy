@@ -15,7 +15,7 @@ class Request
     Timeout::Error
   ].freeze
   DEFAULT_TIMEOUT = 10
-  MAX_RETRIES = 6
+  MAX_RETRIES = 5
 
   attr_accessor :url, :options, :verb, :max_tries, :current_proxy, :request, :request_id
 
