@@ -7,6 +7,7 @@ class Proxy
       GET_PROXY_URL = Addressable::URI.new(
         scheme: 'http',
         host: 'gimmeproxy.com',
+        api_key: ENV['GIMME_PROXY_API_KEY'],
         path: '/api/getProxy',
         query_values: {
           cookies: true,
