@@ -17,10 +17,12 @@ class App < Sinatra::Base
   %i(get post put head).each do |method|
     send(method, '/') do
       options = params.merge(method: method)
-      Proxy::Request.run(options) do |op|
-        return halt op.model.response
-      end
-      return halt 400
+      sleep 40
+      halt 200
+      # Proxy::Request.run(options) do |op|
+      #   return halt op.model.response
+      # end
+      # return halt 400
     end
   end
 end
