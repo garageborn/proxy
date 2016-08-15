@@ -2,6 +2,6 @@
 .DS_Store
 /.bundle
 /log/*
-/tmp
+/tmp/*
 /vendor/bundle
 dump.rdb
