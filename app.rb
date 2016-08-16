@@ -11,11 +11,6 @@ class App < Sinatra::Base
     also_reload File.expand_path('../lib/**/*.rb', __FILE__)
   end
 
-  configure :production do
-    use Raven::Rack
-    use Rack::Timeout, service_timeout: REQUEST_TIMEOUT
-  end
-
   %i(get post put head).each do |method|
     send(method, '/') do
       options = params.merge(method: method)

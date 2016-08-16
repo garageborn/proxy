@@ -7,6 +7,7 @@ class Request
     Errno::ECONNREFUSED,
     Errno::ECONNRESET,
     Errno::EHOSTUNREACH,
+    Errno::ENETUNREACH,
     Net::HTTPFatalError,
     Net::HTTPRetriableError,
     Net::HTTPServerException,
