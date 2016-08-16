@@ -14,8 +14,8 @@ class Request
     SocketError,
     Timeout::Error
   ].freeze
-  DEFAULT_TIMEOUT = 10
   MAX_RETRIES = 5
+  DEFAULT_TIMEOUT = REQUEST_TIMEOUT / MAX_RETRIES
 
   attr_accessor :url, :options, :verb, :max_tries, :current_proxy, :request, :request_id
 
@@ -38,7 +38,7 @@ class Request
 
   def response
     return [422, {}, nil] if request.blank?
-    [request.code, request.headers, request.body]
+    [request.code, { 'X-Proxy-Host' => current_proxy.try(:host) }, request.body]
   end
 
   private
