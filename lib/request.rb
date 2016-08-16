@@ -22,7 +22,7 @@ class Request
 
   def initialize(params = {})
     @url = params[:url]
-    @options = { timeout: DEFAULT_TIMEOUT }.merge(params[:options].deep_symbolize_keys)
+    @options = { timeout: DEFAULT_TIMEOUT }.merge(params[:options].to_h.deep_symbolize_keys)
     @verb = params[:verb] || :get
     @max_tries = params[:max_tries] || MAX_RETRIES
     @request_id = SecureRandom.uuid
