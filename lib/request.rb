@@ -22,7 +22,7 @@ class Request
 
   def initialize(params = {})
     @url = params[:url]
-    @options = { timeout: DEFAULT_TIMEOUT }.merge(params[:options].to_h)
+    @options = { timeout: DEFAULT_TIMEOUT }.merge(params[:options].deep_symbolize_keys)
     @verb = params[:verb] || :get
     @max_tries = params[:max_tries] || MAX_RETRIES
     @request_id = SecureRandom.uuid
@@ -46,6 +46,8 @@ class Request
 
   def call
     logging do
+      p '-----------call'
+      puts verb, url, options
       HTTParty.send(verb, url, options).tap do |request|
         touch_current_proxy!(request.success?)
         raise Errno::ECONNREFUSED unless request.success?
