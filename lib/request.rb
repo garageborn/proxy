@@ -46,8 +46,6 @@ class Request
 
   def call
     logging do
-      p '-----------call'
-      puts verb, url, options
       HTTParty.send(verb, url, options).tap do |request|
         touch_current_proxy!(request.success?)
         raise Errno::ECONNREFUSED unless request.success?
