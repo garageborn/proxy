@@ -23,6 +23,7 @@ class Proxy < Ohm::Model
 
   class Desactivate < Trailblazer::Operation
     def process(*)
+      return unless model.present?
       model.active = false
       model.save
     end
@@ -38,6 +39,7 @@ class Proxy < Ohm::Model
     MAX_ERRORS = 10
 
     def process(params = {})
+      return unless model.present?
       model.requested_at = Time.now
       params[:active] ? model.errors = 0 : model.errors += 1
       model.active = model.errors < MAX_ERRORS

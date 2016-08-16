@@ -21,7 +21,7 @@ environment ENV.fetch('RACK_ENV') { 'development' }
 # Workers do not work on JRuby or Windows (both of which do not support
 # processes).
 #
-workers ENV.fetch('PROXY_WEB_CONCURRENCY') { 1 }
+workers ENV.fetch('PROXY_WEB_CONCURRENCY') { 2 }
 
 preload_app!
 
