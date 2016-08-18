@@ -18,7 +18,7 @@ class Request
       if Sinatra::Base.production? && ENV['LOGGLY_TOKEN'].present?
         Logglier.new(
           "https://logs-01.loggly.com/inputs/#{ ENV['LOGGLY_TOKEN'] }/tag/proxy/",
-          # threaded: true,
+          threaded: false,
           format: :json
         )
       else
