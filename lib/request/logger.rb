@@ -15,15 +15,15 @@ class Request
     private
 
     def logger
-      if Sinatra::Base.production? && ENV['LOGGLY_TOKEN'].present?
-        Logglier.new(
-          "https://logs-01.loggly.com/inputs/#{ ENV['LOGGLY_TOKEN'] }/tag/proxy/",
-          threaded: true,
-          format: :json
-        )
-      else
+      # if Sinatra::Base.production? && ENV['LOGGLY_TOKEN'].present?
+      #   Logglier.new(
+      #     "https://logs-01.loggly.com/inputs/#{ ENV['LOGGLY_TOKEN'] }/tag/proxy/",
+      #     threaded: true,
+      #     format: :json
+      #   )
+      # else
         ::Logger.new("#{ Sinatra::Base.root }/log/proxy.log")
-      end
+      # end
     end
 
     def debug_log(type, payload)
