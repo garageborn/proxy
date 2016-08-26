@@ -8,6 +8,7 @@ class Request
     Errno::ECONNRESET,
     Errno::EHOSTUNREACH,
     Errno::ENETUNREACH,
+    Errno::EPIPE,
     Net::HTTPFatalError,
     Net::HTTPRetriableError,
     Net::HTTPServerException,
@@ -15,7 +16,7 @@ class Request
     SocketError,
     Timeout::Error
   ].freeze
-  MAX_RETRIES = 5
+  MAX_RETRIES = 4
   DEFAULT_TIMEOUT = REQUEST_TIMEOUT / MAX_RETRIES
 
   attr_accessor :url, :options, :verb, :max_tries, :current_proxy, :request, :request_id
