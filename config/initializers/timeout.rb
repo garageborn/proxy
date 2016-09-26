@@ -1,3 +1,3 @@
 require 'rack-timeout'
 
-REQUEST_TIMEOUT = 60
+REQUEST_TIMEOUT = 40
