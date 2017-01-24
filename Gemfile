@@ -21,3 +21,10 @@ gem 'sinatra-contrib', '1.4.7'
 gem 'thread', '0.2.2'
 gem 'trailblazer', '1.1.1'
 gem 'whenever', '0.9.7', require: false
+
+group :development do
+  gem 'capistrano-bundler', '1.2.0', require: false
+  gem 'capistrano-rbenv', '2.1.0', require: false
+  gem 'capistrano', '3.7.1'
+  gem 'capistrano3-puma', '1.2.1', require: false
+end
