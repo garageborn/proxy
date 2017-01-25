@@ -27,4 +27,11 @@ set :whenever_command, -> {
 }
 
 # puma
-set :puma_conf, -> { "#{ release_path }/config/puma.rb" }
+set :puma_threads, [0, 2]
+set :puma_workers, 2
+
+# slackistrano
+set :slackistrano, {
+  channel: '#activities',
+  webhook: 'https://hooks.slack.com/services/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'
+}

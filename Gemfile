@@ -27,4 +27,5 @@ group :development do
   gem 'capistrano-rbenv', '2.1.0', require: false
   gem 'capistrano', '3.7.1'
   gem 'capistrano3-puma', '1.2.1', require: false
+  gem 'slackistrano', '3.1.0', require: false
 end
