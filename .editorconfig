@@ -13,7 +13,7 @@ indent_size = 4
 [{Gemfile*,Rakefile,Capfile}]
 indent_size = 2
 
-[*.rb]
+[*.rb,*.rake]
 indent_size = 2
 
 [*.sass]
