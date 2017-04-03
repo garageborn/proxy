@@ -19,7 +19,7 @@ gem 'sentry-raven', '2.4.0'
 gem 'sinatra', '2.0.0.rc2'
 gem 'sinatra-contrib', '2.0.0.rc2'
 gem 'thread', '0.2.2'
-gem 'trailblazer', '1.1.1'
+gem 'trailblazer', '1.1.2'
 gem 'whenever', '0.9.7', require: false
 
 group :development do
