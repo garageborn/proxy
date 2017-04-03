@@ -27,5 +27,9 @@ group :development do
   gem 'capistrano-rbenv', '2.1.0', require: false
   gem 'capistrano', '3.8.0'
   gem 'capistrano3-puma', '3.1.0', require: false
+  gem 'pronto', '0.8.2'
+  gem 'pronto-brakeman', '0.8.0', require: false
+  gem 'pronto-flay', '0.8.0', require: false
+  gem 'pronto-rubocop', '0.8.0', require: false
   gem 'slackistrano', '3.1.0', require: false
 end
